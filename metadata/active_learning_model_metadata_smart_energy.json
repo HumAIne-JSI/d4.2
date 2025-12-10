@@ -1,0 +1,66 @@
+{
+  "dataset_uuid": "urn:dataset:simulation_security_labels_n-1",
+  "dataset_version": "2025-02-10T12:00:00Z",
+
+  "task": "n-1 security classification",
+  "labels": ["secure", "insecure"],
+
+  "model_type": "RandomForestClassifier",
+  "model_version": "rf_n1_active_learning_v1",
+  "seed": 42,
+
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "random_state": 42
+  },
+
+  "query_strategy": { "name": "entropy", "batch_size": 10 },
+  "seed_set": { "size": 50, "indices": [3, 7, 12, 19, 25, 31, 42, 55, 68, 73, 80, 91, 105, 111, 128, 130, 141, 150, 167, 172, 181, 190, 201, 214, 227, 233, 248, 259, 266, 279, 284, 295, 302, 317, 329, 333, 348, 359, 366, 379, 388, 399, 402, 417, 428, 439, 446, 457, 468, 479] },
+
+  "training_dataset_indices": [/* remaining labeled indices per iteration */],
+  "validation_dataset_indices": [0, 5, 11, 17, 23, 29, 35, 41, 47, 53],
+
+  "iteration_metrics": [
+    { "iteration": 0, "accuracy": 0.52,  "auc": 0.71,  "total_labels": 50 },
+    { "iteration": 1, "accuracy": 0.74,  "auc": 0.86,  "total_labels": 60 },
+    { "iteration": 2, "accuracy": 0.81,  "auc": 0.89,  "total_labels": 70 },
+    { "iteration": 3, "accuracy": 0.88,  "auc": 0.96,  "total_labels": 80 },
+    { "iteration": 4, "accuracy": 0.91,  "auc": 0.98,  "total_labels": 90 },
+    { "iteration": 5, "accuracy": 0.917, "auc": 0.983, "total_labels": 100 }
+  ],
+
+  "final_metrics": {
+    "accuracy": { "mean": 0.917, "std": 0.005 },
+    "auc":      { "mean": 0.983, "std": 0.002 }
+  },
+
+  "aulc": { "accuracy": 0.92, "auc": 0.98 },
+
+  "ttt": {
+    "acc_ge_0_90": 100,
+    "acc_ge_0_92": 500,
+    "auc_ge_0_97": 275,
+    "auc_ge_0_98": 580
+  },
+
+  "simulation_config": {
+    "network_file": "digital_twin_ext_grid.json",
+    "contingency_scheme": "N-1",
+    "comment": "External grid + 380kV buses/lines/generation as in network file"
+  },
+
+  "timestamps": [
+    { "action": "training_start", "timestamp": "2025-02-10T12:02:00Z" },
+    { "action": "training_end",   "timestamp": "2025-02-10T12:58:00Z" }
+  ],
+
+  "version_control": {
+    "code_commit": "git-hash-abc123",
+    "pipeline_version": "active_learning_pipeline_v1"
+  },
+
+  "experiment_id": "rf-ent-10batch-n1-v1"
+}
