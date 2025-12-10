@@ -1,7 +1,5 @@
 # Model Registry and Metadata
 
-_(from deliverable D4.1)_
-
 ## Overview
 
 Users can upload and store their datasets, models, and results to dedicated storage buckets designed to facilitate streamlined management and collaboration. There are 2 ways users can upload their files:
