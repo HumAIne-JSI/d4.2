@@ -1,0 +1,26 @@
+{
+  "participant-id": 0,
+  "node-roles": ["member"],
+  "uuid": "28f16f0c-b32e-4f7f-a2c9-f2ab95da06cd",
+  "dataset-version": "v1",
+  "data-sensitivity": "confidential",
+  "model architecture": "graph tf2onnx (\n  %observations[FLOAT, unk__8x8]\n) initializers (\n  %StatefulPartitionedCall/model/value_out/MatMul/ReadVariableOp:0[FLOAT, 256x1]\n  %StatefulPartitionedCall/model/fc_value_2/MatMul/ReadVariableOp:0[FLOAT, 256x256]\n  %StatefulPartitionedCall/model/fc_value_1/MatMul/ReadVariableOp:0[FLOAT, 8x256]\n  %StatefulPartitionedCall/model/fc_out/MatMul/ReadVariableOp:0[FLOAT, 256x2]\n  %StatefulPartitionedCall/model/fc_2/MatMul/ReadVariableOp:0[FLOAT, 256x256]\n  %StatefulPartitionedCall/model/fc_1/MatMul/ReadVariableOp:0[FLOAT, 8x256]\n) {\n  %StatefulPartitionedCall/model/fc_value_1/MatMul:0 = MatMul(%observations, %StatefulPartitionedCall/model/fc_value_1/MatMul/ReadVariableOp:0)\n  %StatefulPartitionedCall/model/fc_value_1/Tanh:0 = Tanh(%StatefulPartitionedCall/model/fc_value_1/MatMul:0)\n  %StatefulPartitionedCall/model/fc_value_2/MatMul:0 = MatMul(%StatefulPartitionedCall/model/fc_value_1/Tanh:0, %StatefulPartitionedCall/model/fc_value_2/MatMul/ReadVariableOp:0)\n  %StatefulPartitionedCall/model/fc_value_2/Tanh:0 = Tanh(%StatefulPartitionedCall/model/fc_value_2/MatMul:0)\n  %value_out = MatMul(%StatefulPartitionedCall/model/fc_value_2/Tanh:0, %StatefulPartitionedCall/model/value_out/MatMul/ReadVariableOp:0)\n  %StatefulPartitionedCall/model/fc_1/MatMul:0 = MatMul(%observations, %StatefulPartitionedCall/model/fc_1/MatMul/ReadVariableOp:0)\n  %StatefulPartitionedCall/model/fc_1/Tanh:0 = Tanh(%StatefulPartitionedCall/model/fc_1/MatMul:0)\n  %StatefulPartitionedCall/model/fc_2/MatMul:0 = MatMul(%StatefulPartitionedCall/model/fc_1/Tanh:0, %StatefulPartitionedCall/model/fc_2/MatMul/ReadVariableOp:0)\n  %StatefulPartitionedCall/model/fc_2/Tanh:0 = Tanh(%StatefulPartitionedCall/model/fc_2/MatMul:0)\n  %fc_out = MatMul(%StatefulPartitionedCall/model/fc_2/Tanh:0, %StatefulPartitionedCall/model/fc_out/MatMul/ReadVariableOp:0)\n  return %fc_out, %value_out\n}",
+  "global-hyperparameters":
+    {
+      "training_batch_size": 1000,
+      "input":
+        [
+          "processing time",
+          "remaining time till deadline",
+          "approximate machine occupation time",
+          "number of currently queued task on machine",
+          "total number of jobs currently being manufactured in the plant",
+          "necessary energy consumption",
+        ],
+      "output": ["bid between [0, 1] indicating preference/suitability"],
+    },
+  "global-model-version": "v1",
+  "aggregation-algorithm": "InTimeAccumulateWeightedAggregator",
+  "weight-contributions": "proportional to data set size",
+  "aggregation frequency": 1
+}

@@ -2,4 +2,4 @@
 
 Supplementary materials:
 
-* [metadata](./metadata)
+* [metadata](./metadata/README.md): Suggested metadata formats for different learning paradigms used in the project.
